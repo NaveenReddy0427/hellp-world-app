@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    triggers {
+        // This makes Jenkins run whenever GitHub webhook fires (push event)
+        githubPush()
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Pull code from this repo
+                checkout scm
+            }
+        }
+
+         stage('Deploy') {
+            steps {
+                // Stop old process (if running) and start new one
+                sh '''
+                pkill -f "node app.js" || true
+                nohup npm start > app.log 2>&1 &
+                '''
+            }
+        }
+    }
+
+
+
+}
