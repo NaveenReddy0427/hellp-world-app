@@ -6,6 +6,7 @@ app.get("/", (req, res) => {
   res.send("Hello World from AWS with Jenkins CI/CD!");
 });
 
+
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running at ${PORT} PORT`);
 });
