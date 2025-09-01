@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Pull code from this repo
                 checkout scm
             }
         }
@@ -29,7 +28,6 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // Stop old process (if running) and start new one
                 sh '''
                 pkill -f "node app.js" || true
                 nohup npm start > app.log 2>&1 &
