@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    triggers {
-        // This makes Jenkins run whenever GitHub webhook fires (push event)
-        githubPush()
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -14,7 +9,25 @@ pipeline {
             }
         }
 
-         stage('Deploy') {
+         stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+         stage('Test') {
+            steps {
+                sh 'echo "Running tests..."'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'echo "Building Hello World app..."'
+            }
+        }
+
+        stage('Deploy') {
             steps {
                 // Stop old process (if running) and start new one
                 sh '''
@@ -24,7 +37,4 @@ pipeline {
             }
         }
     }
-
-
-
 }
