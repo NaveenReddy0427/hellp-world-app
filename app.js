@@ -3,7 +3,7 @@ const app = express();
 const PORT = 3000;
 
 app.get("/", (req, res) => {
-  res.send("Hello World Demo from AWS with Jenkins CI/CD!");
+  res.send("Hello World App from AWS with Jenkins CI/CD!");
 });
 
 
